@@ -12,7 +12,7 @@ import com.codeborne.selenide.SelenideElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static Benicomp.Utils.Common.ClickElement;
+import static Benicomp.Utils.Common.clickElement;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class BCP005_Test extends TestBase {
@@ -30,10 +30,10 @@ public class BCP005_Test extends TestBase {
         objLoginOut.loginAs(LoginOut.Actor.USERNAME_USERS);
         waitTool.implicitwait();
 
-        ClickElement(HomeRepo.linkHelpCenter, "Click Help Center");
+        clickElement(HomeRepo.linkHelpCenter, "Click Help Center");
         WaitTool.waitForPageLoadToComplete();
 
-        ClickElement(HomeRepo.linkKnowldgeBase, "Click Knowledge Base");
+        clickElement(HomeRepo.linkKnowldgeBase, "Click Knowledge Base");
         WaitTool.waitForPageLoadToComplete();
 
         Thread.sleep(5000);

@@ -2,7 +2,6 @@ package Benicomp.Modules;
 
 import Benicomp.Locators.LoginOutRepo;
 import Benicomp.TestData.GlobalTestData;
-import Benicomp.Utils.Common;
 import com.codeborne.selenide.WebDriverRunner;
 import Benicomp.Utils.Log;
 import org.openqa.selenium.By;
@@ -31,7 +30,7 @@ public class LoginOut {
         switch (actor) {
             case USERNAME_USERS:
                 WebDriverRunner.getWebDriver().navigate().to(GlobalTestData.UserName_Users.getUserURL());
-                LoginUser(GlobalTestData.UserName_Users.getUserId(), GlobalTestData.UserName_Users.getPassword());
+                loginUser(GlobalTestData.UserName_Users.getUserId(), GlobalTestData.UserName_Users.getPassword());
                // Log.info("User logged in successfully.");
                 GlobalTestData.UserNameUrl = GetCurrentUrl();
                 break;

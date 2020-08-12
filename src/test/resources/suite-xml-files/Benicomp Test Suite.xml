@@ -16,4 +16,16 @@
       <class name="Benicomp.Tests.Home.BCP007_Test"/>
     </classes>
   </test> <!-- Home-Tests -->
+
+  <test name="Client-Tests" >
+    <groups>
+      <run>
+        <exclude name="broken"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="Benicomp.Tests.Client.BCP008_Test"/>
+
+    </classes>
+  </test> <!-- Client-Tests -->
 </suite> <!-- Benicomp Test Suite -->

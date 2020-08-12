@@ -21,13 +21,10 @@ import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
-
-import static Benicomp.Utils.TestBase.*;
 
 /**
  * @author smartData
@@ -56,17 +53,17 @@ public class Common extends Start {
      * @throws Exception
      */
 
-    public static void LoginUser(String UserName, String Password) throws Exception {
+    public static void loginUser(String UserName, String Password) throws Exception {
         Log.info("Start Log in to application");
         Log.info("Enter user name");
-        FindAnElement(LoginOutRepo.txtUsername).sendKeys(UserName);
-        //ClearAndSendKeys(LoginOutRepo.txtUsername,UserName,"Enter user name");
+        findAnElement(LoginOutRepo.txtUsername).sendKeys(UserName);
+        //clearAndSendKeys(LoginOutRepo.txtUsername,UserName,"Enter user name");
         Log.info("Enter password");
-        FindAnElement(LoginOutRepo.txtPassword).sendKeys(Password);
-        //ClearAndSendKeys(LoginOutRepo.txtPassword, Password,"Enter password");
-      //  FindAnElement(LoginOutRepo.buttonSignin).waitUntil(Condition.visible,DEFAULT_WAIT).click();
+        findAnElement(LoginOutRepo.txtPassword).sendKeys(Password);
+        //clearAndSendKeys(LoginOutRepo.txtPassword, Password,"Enter password");
+      //  findAnElement(LoginOutRepo.buttonSignin).waitUntil(Condition.visible,DEFAULT_WAIT).click();
         $x("//button[@title='Sign In']").waitUntil(Condition.visible,DEFAULT_WAIT).click();
-        //ClickElement(By.id("Login"), "Login button");
+        //clickElement(By.id("Login"), "Login button");
         sleep(2000);
         waitForPageLoadToComplete();
         Log.info("User logged in successfully.");
@@ -93,7 +90,7 @@ public class Common extends Start {
 
 
 
-    public static void ClickElement(By Element, String detail) throws Exception {
+    public static void clickElement(By Element, String detail) throws Exception {
         try {
             Log.info("Clicking on:" + detail);
             $(Element)
@@ -115,7 +112,7 @@ public class Common extends Start {
      * @throws Exception
      */
 
-    public static void ClickElement(WebElement Element, String detail) {
+    public static void clickElement(WebElement Element, String detail) {
         try {
             Log.info("Clicking on:" + detail);
             $(Element)
@@ -134,7 +131,7 @@ public class Common extends Start {
      * @throws Exception
      */
 
-    public static List<WebElement> FindAllElements(By Element) throws Exception {
+    public static List<WebElement> findAllElements(By Element) throws Exception {
         List<WebElement> TempElement = null;
         try {
             WaitTool.waitForElementsPresentAndDisplay(Element);
@@ -174,7 +171,7 @@ public class Common extends Start {
         executeJavaScript("arguments[0].style.backgroundColor='#80ff80'", elm);
     }
 
-    public static WebElement FindAnElement(By Element) {
+    public static WebElement findAnElement(By Element) {
         WebElement TempElement = null;
         try {
             TempElement = $(Element)
@@ -187,7 +184,7 @@ public class Common extends Start {
     }
 
     //Clear and Send Keys
-    public static void ClearAndSendKeys(By Element, String KeysToSend, String Detail) throws Exception {
+    public static void clearAndSendKeys(By Element, String KeysToSend, String Detail) throws Exception {
         try {
             Log.info("Input " + Detail);
             WebElement inputElement=$(Element)
@@ -212,13 +209,13 @@ public class Common extends Start {
     public static void ClickArrowIcon(By ArrowToClick) {
         try {
             WaitTool.waitForElementsPresentAndDisplay(ArrowToClick);
-            List<WebElement> ArrowToOpenMenu = Common.FindAllElements(ArrowToClick);
+            List<WebElement> ArrowToOpenMenu = Common.findAllElements(ArrowToClick);
 
             if (ArrowToOpenMenu.size() > 0) {
                 if (ArrowToOpenMenu.size() > 1) {
-                    ClickElement(ArrowToOpenMenu.get(1), "Arrow to open menu");
+                    clickElement(ArrowToOpenMenu.get(1), "Arrow to open menu");
                 } else {
-                    ClickElement(ArrowToOpenMenu.get(0), "Arrow to open menu");
+                    clickElement(ArrowToOpenMenu.get(0), "Arrow to open menu");
                 }
             }
         } catch (Exception e) {
@@ -549,7 +546,7 @@ public class Common extends Start {
         action.moveToElement(WebDriverRunner.getWebDriver().findElement(element))
                 .click(WebDriverRunner.getWebDriver().findElement(element2)).build().perform();
         Thread.sleep(1000);
-        Common.ClickElement(element3, "SelectData");
+        Common.clickElement(element3, "SelectData");
 
     }
 
@@ -830,6 +827,16 @@ public class Common extends Start {
         }
     }
 
+     public static void clickCheckbox(By by ,String detail){
 
+         SelenideElement chkBoxelm = $(by);
+         if (!$(by).isSelected()) {
+             Log.info("Click on Check Box");
+             chkBoxelm.click();
+         }
+
+
+
+     }
 
 }

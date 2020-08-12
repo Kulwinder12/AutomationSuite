@@ -25,7 +25,7 @@ public class BCP008_Test  extends TestBase {
         wt.implicitwait();
         Client objClient = new Client();
         objClient.verifyQSERAwithOtherProducts();
-        logTestStep("Client Added Successfully");
+
     }
 
 

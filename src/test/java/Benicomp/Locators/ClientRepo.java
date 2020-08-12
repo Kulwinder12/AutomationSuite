@@ -21,9 +21,9 @@ public class ClientRepo {
     public static By btnCancel = By.xpath("//button[text()=' Cancel ']");
     public static By btnEdit = By.xpath("//button[@title='Edit']");
     public static By btnBack = By.xpath("//button[@title='Back']");
-    public static By chkIncenticare = By.xpath("//span[@class='custom-checkbox-wrap']/input[contains(@formcontrolname, 'BeniCompAdvantage')]");
-    public static By chkBenicompSelect = By.xpath("//span[@class='custom-checkbox-wrap']/input[contains(@formcontrolname, 'BeniCompSelect')]");
-    public static By chkQSHERA = By.xpath("//span[@class='custom-checkbox-wrap']/input[contains(@formcontrolname, 'qsehraSelect')]");
+    public static By chkIncenticare = By.xpath("//span[contains(.,'IncentiCare')]");
+    public static By chkBenicompSelect = By.xpath("//span[contains(.,'BeniComp Select')]");
+    public static By chkQSHERA = By.xpath("//span[contains(.,'QSEHRA')]");
     public static By linkProfile = By.xpath("//a[contains(@class,'nav-link')][contains(text(),'Profile')]");
     public static By linkContact = By.xpath("//a[contains(@class,'nav-link')][contains(text(),'Contacts')]");
     public static By linkDivison = By.xpath("//a[contains(@class,'nav-link')][contains(text(),'Divison')]");
