@@ -7,7 +7,10 @@ import java.util.Date;
 
 public class ContactTestData {
 
-    private String First_name, Last_name,Contact_Position;
+    private String First_name;
+    private String Last_name;
+    private String Contact_Position;
+    private String Contact_Email;
 
     public String getFirst_name() {
         return First_name;
@@ -32,6 +35,9 @@ public class ContactTestData {
     public void setContact_Position(String contact_Position) {
         Contact_Position = contact_Position;
     }
+    public String getContact_Email() { return Contact_Email; }
+
+   public void setContact_Email(String contact_Email) { Contact_Email = contact_Email; }
 
     @Override
     public String toString() {
@@ -39,6 +45,7 @@ public class ContactTestData {
                 "First_name='" + First_name + '\'' +
                 ", Last_name='" + Last_name + '\'' +
                 ", Contact_Position='" + Contact_Position + '\'' +
+                ", Contact_Email='" + Contact_Email + '\'' +
                 '}';
     }
 
@@ -53,11 +60,11 @@ public class ContactTestData {
             //Last_Name
             this.setLast_name(rs.getField("Last_name"));
 
-            //Client_URL
+            //Client_Position
             this.setContact_Position(rs.getField("Contact_Position"));
 
-            //Address_Line_1
-
+            //Client_Email
+            this.setContact_Email(rs.getField("Contact_Email"));
 
 
         }//End while

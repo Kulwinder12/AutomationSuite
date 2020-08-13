@@ -28,6 +28,7 @@ public class ClientRepo {
     public static By linkContact = By.xpath("//a[contains(@class,'nav-link')][contains(text(),'Contacts')]");
     public static By linkDivison = By.xpath("//a[contains(@class,'nav-link')][contains(text(),'Divison')]");
     public static By linkNotes = By.xpath("//a[contains(@class,'nav-link')][contains(text(),'Notes')]");
+    public static By btnSendCredentials = By.xpath("//button[@class='btn green-btn'][text()=' Send Credentials ']");
 
 
     //Contact Screen
@@ -40,10 +41,10 @@ public class ClientRepo {
     public static By txtcntctPosition = By.xpath("//h4[text()='Create Contact']//ancestor::div[2]//child::input[contains(@formcontrolname, 'Position')]");
     public static By txtCntctEmail = By.xpath("//h4[text()='Create Contact']//ancestor::div[2]//child::input[contains(@formcontrolname, 'Email')]");
     public static By drpdwndivison = By.xpath("//h4[text()='Create Contact']//ancestor::div[2]//child::form//label[.=' Division ']");
-    public static By chkPrimaryContact = By.xpath("//span[@class='custom-checkbox-wrap']/input[contains(@formcontrolname, 'primaryContact')]");
-    public static By chkAccountingContact = By.xpath("//span[@class='custom-checkbox-wrap']/input[contains(@formcontrolname, 'accountingContact')]");
-    public static By chkMarketingContact = By.xpath("//span[@class='custom-checkbox-wrap']/input[contains(@formcontrolname, 'marketingContact')]");
-    public static By chkAdministrator = By.xpath("//span[@class='custom-checkbox-wrap']/input[contains(@formcontrolname, 'IsAdministrator')]");
+    public static By chkPrimaryContact = By.xpath("//span[contains(.,'Primary Contact')]");
+    public static By chkAccountingContact = By.xpath("//span[contains(.,'Accounting Contact')]");
+    public static By chkMarketingContact = By.xpath("//span[contains(.,'Marketing Contact')]");
+    public static By chkAdministrator = By.xpath("//span[contains(.,'Administrator')]");
     public static By btnContactCancel = By.xpath("//h4[text()='Create Contact']//ancestor::div[2]//child::button[contains(text(),' Cancel ')]");
     public static By btnContactsave = By.xpath("//h4[text()='Create Contact']//ancestor::div[2]//child::button[contains(text(),'Save')]");
 

@@ -25,6 +25,7 @@
     </groups>
     <classes>
       <class name="Benicomp.Tests.Client.BCP008_Test"/>
+      <class name="Benicomp.Tests.Client.BCP009_Test"/>
 
     </classes>
   </test> <!-- Client-Tests -->
