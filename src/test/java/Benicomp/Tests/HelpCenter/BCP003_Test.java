@@ -17,7 +17,7 @@ public class BCP003_Test extends TestBase {
     @Test(description = "To verify that User is able to Navigate all Left Panel Links", groups = {"HelpCenter"})
     public void BCP003() throws Exception {
 
-        logTestStep("Log in to application");
+
         objLoginOut.loginAs(LoginOut.Actor.USERNAME_USERS);
         wt.implicitwait();
 

@@ -19,7 +19,7 @@ public class BCP008_Test  extends TestBase {
 
         GlobalTestData.Client_Users.GetData(getClass().getSimpleName());
       //  GlobalTestData.Contact_Users.GetData(getClass().getSimpleName());
-        logTestStep("Log in to application");
+
         objLoginOut.loginAs(LoginOut.Actor.USERNAME_USERS);
 
         wt.implicitwait();

@@ -28,7 +28,7 @@ public class BCP005_Test extends TestBase {
     public void BCP005() throws Exception {
 
         GlobalTestData.Article_TestData.GetData(getClass().getSimpleName());
-        logTestStep("Log in to application");
+
         objLoginOut.loginAs(LoginOut.Actor.USERNAME_USERS);
         waitTool.implicitwait();
 

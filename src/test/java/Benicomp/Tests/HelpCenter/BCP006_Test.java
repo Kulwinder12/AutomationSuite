@@ -25,7 +25,6 @@ public class BCP006_Test extends TestBase {
     public void BCP006() throws Exception {
 
 
-        logTestStep("Log in to application");
         objLoginOut.loginAs(LoginOut.Actor.USERNAME_USERS);
         waitTool.implicitwait();
 
