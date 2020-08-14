@@ -9,13 +9,13 @@
     </groups>
 
     <classes>
-    <class name="Benicomp.Tests.Home.BCP004_Test"/>
-    <class name="Benicomp.Tests.Home.BCP005_Test"/>
-    <class name="Benicomp.Tests.Home.BCP006_Test"/>
-      <class name="Benicomp.Tests.Home.BCP001_Test"/>
-      <class name="Benicomp.Tests.Home.BCP007_Test"/>
+    <class name="Benicomp.Tests.HelpCenter.BCP004_Test"/>
+    <class name="Benicomp.Tests.HelpCenter.BCP005_Test"/>
+    <class name="Benicomp.Tests.HelpCenter.BCP006_Test"/>
+      <class name="Benicomp.Tests.HelpCenter.BCP001_Test"/>
+      <class name="Benicomp.Tests.HelpCenter.BCP007_Test"/>
     </classes>
-  </test> <!-- Home-Tests -->
+  </test> <!-- HelpCenter-Tests -->
 
   <test name="Client-Tests" >
     <groups>

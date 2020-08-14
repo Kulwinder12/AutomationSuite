@@ -1,29 +1,33 @@
-package Benicomp.Tests.Home;
+package Benicomp.Tests.HelpCenter;
 
 import Benicomp.Locators.HomeRepo;
+import Benicomp.Modules.HelpCenter;
 import Benicomp.Modules.Home;
 import Benicomp.Modules.LoginOut;
+import Benicomp.TestData.GlobalTestData;
 import Benicomp.Utils.Common;
 import Benicomp.Utils.TestBase;
 import Benicomp.Utils.WaitTool;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static Benicomp.Utils.Common.clickElement;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class BCP006_Test extends TestBase {
+public class BCP005_Test extends TestBase {
 
     LoginOut objLoginOut = new LoginOut();
     WaitTool waitTool = new WaitTool();
-    Home home = new Home();
+
+    HelpCenter helpCenter = new HelpCenter();
 
 
-    @Test(description = "To verify that User is able to Delete an Article", groups = {"Home"})
-    public void BCP006() throws Exception {
+    @Test(description = "To verify that User is able to Edit an Article", groups = {"HelpCenter"})
+    public void BCP005() throws Exception {
 
-
+        GlobalTestData.Article_TestData.GetData(getClass().getSimpleName());
         logTestStep("Log in to application");
         objLoginOut.loginAs(LoginOut.Actor.USERNAME_USERS);
         waitTool.implicitwait();
@@ -39,9 +43,19 @@ public class BCP006_Test extends TestBase {
         SelenideElement table = $$("div.table>table>tbody").filter(Condition.visible).first();
         String recordName = Common.getArticle();
         logTestStep("Search the Added Article");
-        home.searchAddedRecord(recordName);
+        helpCenter.searchAddedRecord(recordName);
         logTestStep("Record Found");
-        home.deleteArticle();
+        helpCenter.editArticle();
 
+        Thread.sleep(5000);
+
+        String recordName1 = Common.getArticle();
+        logTestStep("Search the Added Article");
+        helpCenter.searchAddedRecord(recordName1);
+        logTestStep("Record Found");
+        boolean resultPresent = HelpCenter.getAddedData(table, recordName1);
+
+        Assert.assertEquals(resultPresent,true, "added new record");
+        logTestStepPass("Article Updated and Verified");
     }
 }

@@ -49,13 +49,13 @@ public class ContactTestData {
                 '}';
     }
 
-    public void GetData(String testId) throws Exception
+    public void GetData(String SheetName, String testId) throws Exception
     {
-        Recordset rs = ExcelUtil.GetTestData("ContactData", testId);
+        Recordset rs = ExcelUtil.GetTestData(SheetName, testId);
         Date d = new Date(System.currentTimeMillis());
-        while (rs.next()) {
+        long timeMilli = d.getTime();        while (rs.next()) {
             //First_Name
-            this.setFirst_name(rs.getField("First_Name"));
+            this.setFirst_name(rs.getField("First_Name") + ' ' + timeMilli);
 
             //Last_Name
             this.setLast_name(rs.getField("Last_name"));

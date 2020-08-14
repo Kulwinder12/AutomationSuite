@@ -1,6 +1,5 @@
-package Benicomp.Tests.Home;
+package Benicomp.Tests.HelpCenter;
 
-import Benicomp.Modules.Client;
 import Benicomp.Modules.Home;
 import Benicomp.Modules.LoginOut;
 import Benicomp.Utils.WaitTool;
@@ -15,7 +14,7 @@ public class BCP003_Test extends TestBase {
     Home home = new Home();
 
 
-    @Test(description = "To verify that User is able to Navigate all Left Panel Links", groups = {"Home"})
+    @Test(description = "To verify that User is able to Navigate all Left Panel Links", groups = {"HelpCenter"})
     public void BCP003() throws Exception {
 
         logTestStep("Log in to application");

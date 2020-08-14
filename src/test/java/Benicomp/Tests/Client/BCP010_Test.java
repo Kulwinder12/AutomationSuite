@@ -17,8 +17,9 @@ public class BCP010_Test extends TestBase {
     public void BCP010() throws Exception {
 
         GlobalTestData.Client_Users.GetData(getClass().getSimpleName());
-        GlobalTestData.Contact_Users.GetData(getClass().getSimpleName());
-        logTestStep("Log in to application");
+        GlobalTestData.Contact_Users.GetData("ContactData",getClass().getSimpleName());
+        GlobalTestData.Contact2_Users.GetData("Contact2Data",getClass().getSimpleName());
+
         objLoginOut.loginAs(LoginOut.Actor.USERNAME_USERS);
 
         wt.implicitwait();

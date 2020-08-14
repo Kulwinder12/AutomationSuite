@@ -190,7 +190,7 @@ public class Common extends Start {
             WebElement inputElement=$(Element)
                     .waitUntil(appear, DEFAULT_WAIT)
                     .waitUntil(enabled, DEFAULT_WAIT).getWrappedElement();
-            sleep(3000);
+            sleep(1000);
             inputElement.clear();
 
             inputElement.sendKeys(KeysToSend);

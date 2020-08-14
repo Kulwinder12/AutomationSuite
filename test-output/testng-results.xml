@@ -6,6 +6,6 @@
     <groups>
     </groups>
     <test name="Home-Tests" duration-ms="0" started-at="2020-08-06T11:42:32Z" finished-at="2020-08-06T11:42:32Z">
-    </test> <!-- Home-Tests -->
+    </test> <!-- HelpCenter-Tests -->
   </suite> <!-- Benicomp Test Suite -->
 </testng-results>

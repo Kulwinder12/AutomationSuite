@@ -1,6 +1,7 @@
-package Benicomp.Tests.Home;
+package Benicomp.Tests.HelpCenter;
 
 
+import Benicomp.Modules.HelpCenter;
 import Benicomp.Modules.Home;
 import Benicomp.Modules.LoginOut;
 import Benicomp.TestData.GlobalTestData;
@@ -14,10 +15,11 @@ public class BCP007_Test extends TestBase {
 
     LoginOut objLoginOut = new LoginOut();
     WaitTool waitTool = new WaitTool();
-    Home home = new Home();
+
+    HelpCenter helpCenter = new HelpCenter();
 
 
-    @Test(description = "To verify the validations on Add Article Page", groups = {"Home"})
+    @Test(description = "To verify the validations on Add Article Page", groups = {"HelpCenter"})
     public void BCP007() throws Exception {
 
         GlobalTestData.Article_TestData.GetData(getClass().getSimpleName());
@@ -25,7 +27,7 @@ public class BCP007_Test extends TestBase {
         objLoginOut.loginAs(LoginOut.Actor.USERNAME_USERS);
         waitTool.implicitwait();
 
-        home.validationsCheckonAddArticles();
+        helpCenter.validationsCheckonAddArticles();
         logTestStepPass("All the Validations are Verified");
 
     }

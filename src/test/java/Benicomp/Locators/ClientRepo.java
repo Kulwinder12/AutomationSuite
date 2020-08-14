@@ -47,6 +47,8 @@ public class ClientRepo {
     public static By chkAdministrator = By.xpath("//span[contains(.,'Administrator')]");
     public static By btnContactCancel = By.xpath("//h4[text()='Create Contact']//ancestor::div[2]//child::button[contains(text(),' Cancel ')]");
     public static By btnContactsave = By.xpath("//h4[text()='Create Contact']//ancestor::div[2]//child::button[contains(text(),'Save')]");
+    public static By btnEditCancel = By.xpath("//h4[text()='Create Contact']//ancestor::div[2]//child::button[contains(text(),' Cancel ')]");
+    public static By btnEditSave = By.xpath("//h4[text()='Edit Contact']//ancestor::div[2]//child::button[contains(text(),'Save')]");
 
     //Divison Screen
     public static By btnADivision = By.xpath("//button[@title='Add Division']");

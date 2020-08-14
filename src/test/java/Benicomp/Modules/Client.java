@@ -3,12 +3,14 @@ package Benicomp.Modules;
 import Benicomp.Locators.ClientRepo;
 import Benicomp.Locators.HomeRepo;
 import Benicomp.TestData.GlobalTestData;
+import Benicomp.Utils.Log;
 import Benicomp.Utils.WaitTool;
 import com.codeborne.selenide.SelenideElement;
 import org.testng.Assert;
 
 import static Benicomp.Utils.Common.*;
 import static Benicomp.Utils.TestBase.*;
+import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class Client {
@@ -115,20 +117,37 @@ public class Client {
 
        public static void addContactDetails() throws Exception {
 
-           // Add Contact Details
+        // Add 1st Contact Details
 
-           scrollTo(ClientRepo.linkContact);
-           clickElement(ClientRepo.linkContact, "Contact Link");
-           clickElement(ClientRepo.btnAddcontact, "Add Contact Button Clicked");
-           clearAndSendKeys(ClientRepo.txtFirstName, GlobalTestData.Contact_Users.getFirst_name(), "Adding First Name");
-           clearAndSendKeys(ClientRepo.txtLastName, GlobalTestData.Contact_Users.getLast_name(), "Adding Last Name");
-           clearAndSendKeys(ClientRepo.txtcntctPosition, GlobalTestData.Contact_Users.getContact_Position(), "Adding Contact Position");
-           clearAndSendKeys(ClientRepo.txtCntctEmail, GlobalTestData.Contact_Users.getContact_Email(), "Adding Contact Email");
-           clickElement(ClientRepo.chkPrimaryContact, "Primary Contact");
-           clickElement(ClientRepo.btnContactsave, "Save Contact");
+        scrollTo(ClientRepo.linkContact);
+        clickElement(ClientRepo.linkContact, "Contact Link");
+        clickElement(ClientRepo.btnAddcontact, "Add Contact Button Clicked");
+        clearAndSendKeys(ClientRepo.txtFirstName, GlobalTestData.Contact_Users.getFirst_name(), "Adding First Name");
+        clearAndSendKeys(ClientRepo.txtLastName, GlobalTestData.Contact_Users.getLast_name(), "Adding Last Name");
+        clearAndSendKeys(ClientRepo.txtcntctPosition, GlobalTestData.Contact_Users.getContact_Position(), "Adding Contact Position");
+        clearAndSendKeys(ClientRepo.txtCntctEmail, GlobalTestData.Contact_Users.getContact_Email(), "Adding Contact Email");
+        clickElement(ClientRepo.chkPrimaryContact, "Primary Contact");
+        clickElement(ClientRepo.btnContactsave, "Save Contact");
 
 
-       }
+    }
+
+    public static void add2ContactDetails() throws Exception {
+
+        // Add 2nd Contact Details
+
+        scrollTo(ClientRepo.linkContact);
+        clickElement(ClientRepo.linkContact, "Contact Link");
+        clickElement(ClientRepo.btnAddcontact, "Add Contact Button Clicked");
+        clearAndSendKeys(ClientRepo.txtFirstName, GlobalTestData.Contact2_Users.getFirst_name(), "Adding First Name");
+        clearAndSendKeys(ClientRepo.txtLastName, GlobalTestData.Contact2_Users.getLast_name(), "Adding Last Name");
+        clearAndSendKeys(ClientRepo.txtcntctPosition, GlobalTestData.Contact2_Users.getContact_Position(), "Adding Contact Position");
+        clearAndSendKeys(ClientRepo.txtCntctEmail, GlobalTestData.Contact2_Users.getContact_Email(), "Adding Contact Email");
+        clickElement(ClientRepo.chkPrimaryContact, "Primary Contact");
+        clickElement(ClientRepo.btnContactsave, "Save Contact");
+
+
+    }
 
        public static void verifyMultiplePrimaryContacts() throws Exception {
 
@@ -139,7 +158,7 @@ public class Client {
         addContactDetails();
 
         //Adding 2nd Primary Contact Details
-           addContactDetails();
+           add2ContactDetails();
 
 
            SelenideElement element = $x("//p[@class='error-message']");
@@ -148,6 +167,23 @@ public class Client {
            logScreenshot("Screen shot after Clicking Save Button");
            logTestStepPass("There cannot be more than one primary contact at a time");
 
+           // Unchecking the Primary Contact Button to Save 2nd contact
+            clickElement(ClientRepo.chkPrimaryContact ,"Uncheck Primary Contact");
+            clickElement(ClientRepo.btnContactsave ,"Click Save Button");
+            Log.info("Uncheck the Primary Checkbox to save the 2nd Contact");
 
+           // Unchecking the Primary CheckBox from 1st contact
+           $$x("//button[@class='action']").first().click();
+           clickElement(ClientRepo.chkPrimaryContact ,"Uncheck Primary Contact");
+           clickElement(ClientRepo.btnEditSave ,"Click Save Button");
+           Log.info("Uncheck the Primary Checkbox to save the 1st Contact");
+
+           //Checking the Primary Checkbox to check that it can be checked after unchecking the primary contact button from 1st contact
+           $$x("//button[@class='action']").last().click();
+           clickElement(ClientRepo.chkPrimaryContact ,"Uncheck Primary Contact");
+           clickElement(ClientRepo.btnEditSave ,"Click Save Button");
+           Log.info("Check the Primary Checkbox of save 2nd Contact");
+           logScreenshot("Check Primary Contact");
+           logTestStepPass("Primary Checkbox can be checked  after unchecking the primary contact from 1st contact");
        }
 }

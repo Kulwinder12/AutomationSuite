@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 
 import static Benicomp.Utils.Common.*;
+import static Benicomp.Utils.TestBase.logTestStep;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.sleep;
 
@@ -27,6 +28,7 @@ public class LoginOut {
      */
 
     public void loginAs(Actor actor) throws Exception {
+        logTestStep("Log in to application");
         switch (actor) {
             case USERNAME_USERS:
                 WebDriverRunner.getWebDriver().navigate().to(GlobalTestData.UserName_Users.getUserURL());
