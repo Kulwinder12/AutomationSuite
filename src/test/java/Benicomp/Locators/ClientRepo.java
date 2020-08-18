@@ -6,7 +6,7 @@ public class ClientRepo {
 
     //Client Screen
     public static By btnAdduser = By.xpath("//button[@title='Add User']");
-    public static By linkClient = By.cssSelector(".drop-right.dropdown-menu.dropdown-menu-auto.show > li:nth-of-type(2)");
+    public static By linkClient = By.xpath("//li[@class='dropdown-item'][text()='Client']");
     public static By txtClientName = By.xpath("//input[contains(@formcontrolname, 'ClientName')]");
     public static By txtGroupName = By.xpath("//input[contains(@formcontrolname, 'GroupNumber')]");
     public static By txtClientUrl = By.xpath("//input[contains(@formcontrolname, 'ClientUrl')]");
@@ -21,12 +21,12 @@ public class ClientRepo {
     public static By btnCancel = By.xpath("//button[text()=' Cancel ']");
     public static By btnEdit = By.xpath("//button[@title='Edit']");
     public static By btnBack = By.xpath("//button[@title='Back']");
-    public static By chkIncenticare = By.xpath("//span[contains(.,'IncentiCare')]");
+    public static By chkIncenticare = By.xpath("//span[contains(text(),'IncentiCare')]");
     public static By chkBenicompSelect = By.xpath("//span[contains(.,'BeniComp Select')]");
     public static By chkQSHERA = By.xpath("//span[contains(.,'QSEHRA')]");
     public static By linkProfile = By.xpath("//a[contains(@class,'nav-link')][contains(text(),'Profile')]");
     public static By linkContact = By.xpath("//a[contains(@class,'nav-link')][contains(text(),'Contacts')]");
-    public static By linkDivison = By.xpath("//a[contains(@class,'nav-link')][contains(text(),'Divison')]");
+    public static By linkDivison = By.xpath("//a[contains(@class,'nav-link')][contains(text(),'Divisions')]");
     public static By linkNotes = By.xpath("//a[contains(@class,'nav-link')][contains(text(),'Notes')]");
     public static By btnSendCredentials = By.xpath("//button[@class='btn green-btn'][text()=' Send Credentials ']");
 
@@ -51,21 +51,52 @@ public class ClientRepo {
     public static By btnEditSave = By.xpath("//h4[text()='Edit Contact']//ancestor::div[2]//child::button[contains(text(),'Save')]");
 
     //Divison Screen
-    public static By btnADivision = By.xpath("//button[@title='Add Division']");
-    public static By txtDivisonName = By.xpath("//input[contains(@formcontrolname, 'ClientName')]");
-    public static By txtNumberofEmp = By.xpath("//input[contains(@formcontrolname, 'NoOfEmployee')]");
+    public static By btnADivision = By.xpath("//button[contains(text(),'Add Division')]");
+    public static By txtDivisonName = By.xpath("//h4[text()='Create Division']//ancestor::div[2]//child::input[contains(@formcontrolname, 'ClientName')]");
+    public static By txtNumberofEmp = By.xpath("//h4[text()='Create Division']//ancestor::div[2]//child::input[contains(@formcontrolname, 'NoOfEmployee')]");
     public static By btnDivisionCancel = By.xpath("//h4[text()='Create Division']//ancestor::div[2]//child::button[text()=' Cancel ']");
     public static By btnDivisionSave = By.xpath("//h4[text()='Create Division']//ancestor::div[2]//child::button[text()=' Save ']");
 
 
     //IncentiCare Screen
     public static By txtPolicyIssueState = By.xpath("//label[text()='Policy Issue State ']//ancestor::div[1]//child::input[contains(@formcontrolname, 'name')]");
-    public static By drpdownEffectiveDate = By.xpath("//input[contains(@formcontrolname, 'IncenticarebenefitYear')]");
-    public static By radioselectEmp1 = By.xpath("//ul[@class='enrollment-level-options']//ancestor::div[2]//child::div[1]//child::input[1]");
-    public static By radioselectEmp2 = By.xpath("//ul[@class='enrollment-level-options']//ancestor::div[2]//child::div[2]//child::input[1]");
-    public static By radioselectEmp3 = By.xpath("//ul[@class='enrollment-level-options']//ancestor::div[2]//child::div[3]//child::input[1]");
-    public static By radioselectEmp4 = By.xpath("//ul[@class='enrollment-level-options']//ancestor::div[2]//child::div[4]//child::input[1]");
-    public static By btnAddBenifitYear = By.xpath("//div[@class='col-md-12 col-pmd-5']//button[@class='btn green-btn']");
+    public static By effectiveDate = By.xpath("//input[contains(@formcontrolname, 'IncenticarebenefitYear')]");
+    public static By radioselectEmp1 = By.xpath("//ul[contains(@class,'enrollment-level-options')]//ancestor::div[2]//child::div[1]//span[contains(text(),'Employee')]");
+    public static By radioselectEmp2 = By.xpath("//ul[contains(@class,'enrollment-level-options')]//ancestor::div[2]//child::div[2]//span[contains(text(),'Employee')]");
+    public static By radioselectEmp3 = By.xpath("//ul[contains(@class,'enrollment-level-options')]//ancestor::div[2]//child::div[3]//span[contains(text(),'Employee')]");
+    public static By radioselectEmp4 = By.xpath("//ul[contains(@class,'enrollment-level-options')]//ancestor::div[2]//child::div[4]//span[contains(text(),'Employee')]");
+    public static By btnAddBenifitYear = By.xpath("//div[@class='row row-mmd-5 mt-10']//button[@class='btn green-btn'][contains(text(),'Add Benefit Year')][contains(text(),'Benefit Year')]");
+    public static By selectPlan1 = By.xpath("//span[contains(text(),'Plan 1')]");
+    public static By spouseYes = By.xpath("//span[contains(text(),'Yes')]");
+    public static By txtSinglePlan = By.xpath("//body[@id='page-top']//div[@id='benicompAdvanage']//div//div//div[2]//div[1]//div[1]//input[1]");
+    public static By txtFamilyPlan = By.xpath("//body[@id='page-top']//div[@id='benicompAdvanage']//div//div//div[3]//div[1]//div[1]//input[1]");
+    public static By chkBloodGlucode = By.xpath("//span[contains(text(),'Blood Glucose')]");
+    public static By ldlCholestrol = By.xpath("//span[contains(text(),'LDL Cholesterol')]");
+    public static By addAgent = By.xpath("//button[contains(text(),'Add New Agent')]");
+
+    // agent Screen
+
+
+
+
+    //Employee screen
+    public static By linkAddEmployee = By.xpath("//li[@class='dropdown-item'][text()='Employee']");
+
+
+
+
+
+
+    //Dependent Screen
+    public static By linkAddDependent = By.xpath("//li[@class='dropdown-item'][text()='Dependent']");
+    public static By linkDependentFirstName = By.xpath("//h6[text()='Create Dependent']//ancestor::div[3]//child::input[contains(@formcontrolname, 'FirstName')]");
+    public static By linkDependentLastName = By.xpath("//h6[text()='Create Dependent']//ancestor::div[3]//child::input[contains(@formcontrolname, 'LastName')]");
+    public static By dependentDOB = By.xpath("//h6[text()='Create Dependent']//ancestor::div[3]//child::input[contains(@formcontrolname, 'DateOfBirth')]");
+    public static By dependedntGenderMale = By.xpath("//span[text()='Male']");
+    public static By dependedntGenderFemale = By.xpath("//span[text()='Female']");
+    public static By dependentSocialNumber = By.xpath("//h6[text()='Create Dependent']//ancestor::div[3]//child::input[contains(@formcontrolname, 'Ssn')]");
+    public static By dependentType = By.xpath("//li[text()=' Spouse ']");
+    public static By dependentParticipent = By.xpath("//h6[text()='Create Dependent']//ancestor::div[3]//child::input[contains(@formcontrolname, 'Participant')]");
 
 
 

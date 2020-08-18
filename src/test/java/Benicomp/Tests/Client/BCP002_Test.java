@@ -20,12 +20,13 @@ public class BCP002_Test extends TestBase {
 
         GlobalTestData.Client_Users.GetData(getClass().getSimpleName());
         GlobalTestData.Contact_Users.GetData("ContactData",getClass().getSimpleName());
+        GlobalTestData.Divison_Users.GetData(getClass().getSimpleName());
 
         objLoginOut.loginAs(LoginOut.Actor.USERNAME_USERS);
 
         wt.implicitwait();
         Client objClient = new Client();
-        objClient.addUser();
+        objClient.addUserWithIncenticare();
         logTestStep("Client Added Successfully");
     }
 

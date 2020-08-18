@@ -41,7 +41,7 @@ public class BCP005_Test extends TestBase {
         Thread.sleep(5000);
 
         SelenideElement table = $$("div.table>table>tbody").filter(Condition.visible).first();
-        String recordName = Common.getArticle();
+        String recordName = Common.getFieldData("ArticleTitle");
         logTestStep("Search the Added Article");
         helpCenter.searchAddedRecord(recordName);
         logTestStep("Record Found");
@@ -49,7 +49,7 @@ public class BCP005_Test extends TestBase {
 
         Thread.sleep(5000);
 
-        String recordName1 = Common.getArticle();
+        String recordName1 = Common.getFieldData("ArticleTitle");
         logTestStep("Search the Added Article");
         helpCenter.searchAddedRecord(recordName1);
         logTestStep("Record Found");

@@ -12,7 +12,7 @@ public class GlobalTestData {
     public static ContactTestData Contact2_Users = new ContactTestData();
     public static Date d = new Date(System.currentTimeMillis());
     public static AddArticleTestData Article_TestData = new AddArticleTestData();
-
+    public static DivisionTestData Divison_Users = new DivisionTestData();
 
 
 

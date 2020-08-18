@@ -46,7 +46,7 @@ public class HelpCenter {
         clearAndSendKeys(HelpCenterRepo.txtArticle, GlobalTestData.Article_TestData.getContent(), "Add Content");
         scrollandClick(HelpCenterRepo.btnCreate);
         logTestStepPass("Article " + GlobalTestData.Article_TestData.getTitle()+ " is addded");
-        Common.saveArtileTitle(GlobalTestData.Article_TestData.getTitle());
+        Common.saveFieldData("ArticleTitle",GlobalTestData.Article_TestData.getTitle(),"Article Title for scripts");
 
 
     }
@@ -115,7 +115,7 @@ public class HelpCenter {
         Thread.sleep(5000);
         Common.RefreshPage();
 
-        String AtricleToDelete =  Common.getArticle();
+        String AtricleToDelete =  Common.getFieldData("ArticleTitle");
         List<String> list = new ArrayList<>();
         for (SelenideElement elm : $$("tr:nth-child(1)>td").filter(visible)) {
             list.add(elm.text());

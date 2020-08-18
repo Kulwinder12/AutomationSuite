@@ -3,10 +3,16 @@ package Benicomp.Modules;
 import Benicomp.Locators.ClientRepo;
 import Benicomp.Locators.HomeRepo;
 import Benicomp.TestData.GlobalTestData;
+import Benicomp.Utils.Common;
 import Benicomp.Utils.Log;
 import Benicomp.Utils.WaitTool;
 import com.codeborne.selenide.SelenideElement;
 import org.testng.Assert;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import static Benicomp.Utils.Common.*;
 import static Benicomp.Utils.TestBase.*;
@@ -15,10 +21,16 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class Client {
 
-    public void addUser() throws Exception {
+
+
+    public void addUserWithIncenticare() throws Exception {
 
         addClientDetails();
-        addContactDetails();
+       // addContactDetails();
+     //   addDivisionDetails();
+        addIncenticareDetails();
+
+
 
 
     }
@@ -110,6 +122,8 @@ public class Client {
            clearAndSendKeys(ClientRepo.txtZipCode, GlobalTestData.Client_Users.getZIP_Postal_Code(), "Adding Zip Code");
            clearAndSendKeys(ClientRepo.txtFedredId, GlobalTestData.Client_Users.getFederal_ID(), "Adding Fedral Id");
            clickElement(ClientRepo.btnSave, "Save button Click");
+           Common.saveFieldData("ClientName" ,GlobalTestData.Client_Users.getClient_Name() ,"Saving it for other scripts");
+           logTestStepPass("Client Created");
 
 
 
@@ -128,6 +142,38 @@ public class Client {
         clearAndSendKeys(ClientRepo.txtCntctEmail, GlobalTestData.Contact_Users.getContact_Email(), "Adding Contact Email");
         clickElement(ClientRepo.chkPrimaryContact, "Primary Contact");
         clickElement(ClientRepo.btnContactsave, "Save Contact");
+        Common.saveFieldData("ContactName" ,GlobalTestData.Contact_Users.getFirst_name() ,"Saving it for other scripts");
+        logTestStepPass("Contact Added");
+
+
+    }
+
+    public static void addDivisionDetails() throws Exception {
+
+        clickElement(ClientRepo.linkDivison ,"Divison Link");
+        clickElement(ClientRepo.btnADivision ,"Add Division Button");
+        waitForPageLoadToComplete();
+        clearAndSendKeys(ClientRepo.txtDivisonName,GlobalTestData.Divison_Users.getDivison_Name(),"Add Divison Name");
+        clearAndSendKeys(ClientRepo.txtNumberofEmp ,GlobalTestData.Divison_Users.getNoOfEmployees(),"Add Number Of Employees");
+        clickElement(ClientRepo.btnDivisionSave ,"Click Save Button");
+        Common.saveFieldData("DivisonName" ,GlobalTestData.Divison_Users.getDivison_Name() ,"Saving it for other scripts");
+        logTestStepPass("Divison Created");
+
+
+
+    }
+
+    public static void addIncenticareDetails() throws Exception {
+
+        // A
+
+      //  clickElement(ClientRepo.linkProfile ,"Click Profile Link");
+        moveToElement(ClientRepo.chkIncenticare);
+        clickElement(ClientRepo.chkIncenticare , "Check incenticare");
+        waitForPageLoadToComplete();
+        clearAndSendKeys(ClientRepo.txtPolicyIssueState,"Arizona" , "Policy Issue State ");
+        String CurrentDate = Common.getTodayDate();
+        clearAndSendKeys(ClientRepo.effectiveDate ,CurrentDate ,"Today date added");
 
 
     }
@@ -186,4 +232,7 @@ public class Client {
            logScreenshot("Check Primary Contact");
            logTestStepPass("Primary Checkbox can be checked  after unchecking the primary contact from 1st contact");
        }
+
+
+
 }

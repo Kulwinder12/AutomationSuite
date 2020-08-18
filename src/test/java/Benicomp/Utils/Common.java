@@ -18,6 +18,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.io.*;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -532,7 +533,8 @@ public class Common extends Start {
 
     /**
      * <h1>Select Due Date<h1/>
-     * <p>Purpose:This method is used to select tp compliance due date </p>
+     *
+     *
      *
      * @param element,element2,element3
      * @throws Exception
@@ -736,7 +738,7 @@ public class Common extends Start {
 
     }
 
-    public static void saveArtileTitle(String articleTitle) {
+    public static void saveFieldData(String fieldTitle, String fieldData, String fieldComments) {
 
         String filePath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "test" + File.separator + "resources" + File.separator + "TestData.properties";
         try {
@@ -746,10 +748,10 @@ public class Common extends Start {
             inputStream.close();
 
             FileOutputStream fos = new FileOutputStream(filePath);
-            prop.setProperty("ArticleTitle", articleTitle);
-            prop.store(fos, "Article Title for scripts");
+            prop.setProperty(fieldTitle, fieldData);
+            prop.store(fos, fieldComments);
             fos.close();
-            Log.info("Form saved successfully: " + getArticle());
+            Log.info("Form saved successfully: " + getFieldData(fieldTitle));
 
         } catch (Exception ex) {
             Log.error("Problem in Form save");
@@ -758,12 +760,12 @@ public class Common extends Start {
 
     }
 
-    public static String getArticle(){
+    public static String getFieldData(String fieldTitle){
             Properties prop = new Properties();
             String filePath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "test" + File.separator + "resources" + File.separator + "TestData.properties";
             try (FileInputStream fis = new FileInputStream(filePath)) {
                 prop.load(fis);
-                return prop.getProperty("ArticleTitle");
+                return prop.getProperty(fieldTitle);
             } catch (Exception ex) {
                 ex.printStackTrace();
                 return "NA";
@@ -835,8 +837,29 @@ public class Common extends Start {
              chkBoxelm.click();
          }
 
-
-
      }
 
+     public static String getTodayDate(){
+
+         /*DateFormat dateFormat = new SimpleDateFormat("MMddyyyy ");
+         Date date = new Date();
+         System.out.println(dateFormat.format(date));*/
+
+         String pattern = "MMddyyyy";
+         DateFormat df = new SimpleDateFormat(pattern);
+         Date today = Calendar.getInstance().getTime();
+         String todayAsString = df.format(today);
+
+         return todayAsString;
+     }
+
+
+     public static void getRandomNumber (int bound){
+
+         Random rand = new Random();
+
+         // Generate random integers in range 0 to 999
+         int rand_int1 = rand.nextInt(bound);
+         System.out.println("Random Integers: "+rand_int1);
+     }
 }

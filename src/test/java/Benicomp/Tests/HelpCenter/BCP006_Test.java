@@ -2,7 +2,6 @@ package Benicomp.Tests.HelpCenter;
 
 import Benicomp.Locators.HomeRepo;
 import Benicomp.Modules.HelpCenter;
-import Benicomp.Modules.Home;
 import Benicomp.Modules.LoginOut;
 import Benicomp.Utils.Common;
 import Benicomp.Utils.TestBase;
@@ -37,7 +36,7 @@ public class BCP006_Test extends TestBase {
         Thread.sleep(5000);
 
         SelenideElement table = $$("div.table>table>tbody").filter(Condition.visible).first();
-        String recordName = Common.getArticle();
+        String recordName = Common.getFieldData("ArticleTitle");
         logTestStep("Search the Added Article");
         helpCenter.searchAddedRecord(recordName);
         logTestStep("Record Found");
