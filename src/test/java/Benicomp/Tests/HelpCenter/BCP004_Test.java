@@ -4,6 +4,7 @@ import Benicomp.Modules.HelpCenter;
 import Benicomp.Modules.Home;
 import Benicomp.Modules.LoginOut;
 import Benicomp.TestData.GlobalTestData;
+import Benicomp.Utils.Common;
 import Benicomp.Utils.TestBase;
 import Benicomp.Utils.WaitTool;
 import com.codeborne.selenide.Condition;
@@ -32,12 +33,7 @@ public class BCP004_Test extends TestBase {
 
         SelenideElement table = $$("div.table>table>tbody").filter(Condition.visible).first();
         String recordName = GlobalTestData.Article_TestData.getTitle();
-        logTestStep("Search the Added Article");
-        helpCenter.searchAddedRecord(recordName);
-        logTestStep("Record Found");
-        boolean resultPresent = HelpCenter.getAddedData(table, recordName);
-
-        Assert.assertEquals(resultPresent,true, "added new record");
+        Common.verifyAddedDataInTable(table ,recordName);
         logTestStepPass("Article Added and Verified");
     }
 }

@@ -38,7 +38,7 @@ public class BCP006_Test extends TestBase {
         SelenideElement table = $$("div.table>table>tbody").filter(Condition.visible).first();
         String recordName = Common.getFieldData("ArticleTitle");
         logTestStep("Search the Added Article");
-        helpCenter.searchAddedRecord(recordName);
+        Common.searchAddedRecord(recordName);
         logTestStep("Record Found");
         helpCenter.deleteArticle();
 

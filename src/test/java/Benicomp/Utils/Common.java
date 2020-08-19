@@ -1,5 +1,7 @@
 package Benicomp.Utils;
 
+import Benicomp.Locators.HelpCenterRepo;
+import Benicomp.Modules.HelpCenter;
 import com.codeborne.selenide.*;
 import Benicomp.Locators.LoginOutRepo;
 import Benicomp.Start.Start;
@@ -23,9 +25,11 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+import static Benicomp.Utils.TestBase.logTestStep;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
+import static java.lang.Thread.sleep;
 
 /**
  * @author smartData
@@ -286,14 +290,14 @@ public class Common extends Start {
         String actual = $(Element).waitUntil(appear, DEFAULT_WAIT).getText().trim();
         String message = "|Expected Text: " + ExpectedText + "| |Actual Text: " + actual + "|";
         String html = "<span style='color:blue;'>" + message + " </span>";
-        TestBase.logTestStep(html);
+        logTestStep(html);
         Assert.assertEquals(actual.toUpperCase(), ExpectedText.toUpperCase().trim());
     }
 
     public static void assertText(String actualText, String ExpectedText) {
         String message = "|Expected Text: " + ExpectedText + "| |Actual Text: " + actualText + "|";
         String html = "<span style='color:blue;'>" + message + " </span>";
-        TestBase.logTestStep(html);
+        logTestStep(html);
         Assert.assertEquals(actualText.toUpperCase(), ExpectedText.toUpperCase().trim());
     }
 
@@ -501,7 +505,7 @@ public class Common extends Start {
     }
 
 
-    public static void switchToActiveFrame() {
+    public static void switchToActiveFrame() throws InterruptedException {
         switchTo().defaultContent();
         Log.info("Switching to active frame");
         WebElement element = $(".active.oneContent").$("iframe").waitUntil(appear, DEFAULT_WAIT);
@@ -862,4 +866,66 @@ public class Common extends Start {
          int rand_int1 = rand.nextInt(bound);
          System.out.println("Random Integers: "+rand_int1);
      }
+
+    public static void SendKeys(By Element, String KeysToSend, String Detail) throws Exception {
+        try {
+            Log.info("Input " + Detail);
+            WebElement inputElement=$(Element)
+                    .waitUntil(appear, DEFAULT_WAIT)
+                    .waitUntil(enabled, DEFAULT_WAIT).getWrappedElement();
+            sleep(1000);
+            inputElement.sendKeys(KeysToSend);
+        } catch (Exception e) {
+            Log.error("Error in setting a text value: " + e.toString());
+            throw e;
+        }
+    }
+    public static Boolean getAddedData(SelenideElement ele, String recordName) {
+        List<String> listData = ele.$$("tr:nth-child(1)>td").texts();
+        boolean result = false;
+        for (String strDocName : listData) {
+            System.out.println(strDocName);
+            if (strDocName.equalsIgnoreCase(recordName)) {
+                result = true;
+                break;
+            } else continue;
+        }
+        return result;
+    }
+
+    public static void searchAddedRecord(String recordname) throws InterruptedException {
+
+        WebElement txtSrc = $(HelpCenterRepo.searchBox).waitUntil(appear, DEFAULT_WAIT).getWrappedElement();
+        txtSrc.click();
+        Log.info("Search Box Clicked");
+        txtSrc.sendKeys(recordname);
+        Log.info("Search With Record Name");
+        sleep(500);
+        txtSrc.sendKeys(Keys.ENTER);
+        sleep(500);
+
+
+    }
+    public static void verifyAddedDataInTable(SelenideElement table ,String recordName) throws InterruptedException {
+        logTestStep("Search  Added record");
+        searchAddedRecord(recordName);
+        logTestStep("Record Found");
+        sleep(2000);
+
+        boolean resultPresent = getAddedData(table, recordName);
+
+        Assert.assertEquals(resultPresent,true, "No record Added");
+
+
+    }
+
+    public static void verifyAddedDataInTablewithOutSearch(SelenideElement table ,String recordName) throws InterruptedException {
+
+
+          boolean resultPresent = getAddedData(table, recordName);
+
+        Assert.assertEquals(resultPresent,true, "No record Added");
+
+
+    }
 }

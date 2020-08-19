@@ -13,6 +13,7 @@ public class GlobalTestData {
     public static Date d = new Date(System.currentTimeMillis());
     public static AddArticleTestData Article_TestData = new AddArticleTestData();
     public static DivisionTestData Divison_Users = new DivisionTestData();
+    public static AgentTestData Agent_Users = new AgentTestData();
 
 
 

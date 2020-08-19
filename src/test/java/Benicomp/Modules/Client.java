@@ -7,6 +7,7 @@ import Benicomp.Utils.Common;
 import Benicomp.Utils.Log;
 import Benicomp.Utils.WaitTool;
 import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.Keys;
 import org.testng.Assert;
 
 import java.text.DateFormat;
@@ -16,8 +17,7 @@ import java.util.Date;
 
 import static Benicomp.Utils.Common.*;
 import static Benicomp.Utils.TestBase.*;
-import static com.codeborne.selenide.Selenide.$$x;
-import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.*;
 
 public class Client {
 
@@ -26,9 +26,10 @@ public class Client {
     public void addUserWithIncenticare() throws Exception {
 
         addClientDetails();
-       // addContactDetails();
-     //   addDivisionDetails();
+        addContactDetails();
+        addDivisionDetails();
         addIncenticareDetails();
+
 
 
 
@@ -146,6 +147,8 @@ public class Client {
         logTestStepPass("Contact Added");
 
 
+
+
     }
 
     public static void addDivisionDetails() throws Exception {
@@ -157,7 +160,7 @@ public class Client {
         clearAndSendKeys(ClientRepo.txtNumberofEmp ,GlobalTestData.Divison_Users.getNoOfEmployees(),"Add Number Of Employees");
         clickElement(ClientRepo.btnDivisionSave ,"Click Save Button");
         Common.saveFieldData("DivisonName" ,GlobalTestData.Divison_Users.getDivison_Name() ,"Saving it for other scripts");
-        logTestStepPass("Divison Created");
+        logTestStepPass("Divison Added");
 
 
 
@@ -165,15 +168,50 @@ public class Client {
 
     public static void addIncenticareDetails() throws Exception {
 
-        // A
 
-      //  clickElement(ClientRepo.linkProfile ,"Click Profile Link");
+
+      clickElement(ClientRepo.linkProfile ,"Click Profile Link");
         moveToElement(ClientRepo.chkIncenticare);
         clickElement(ClientRepo.chkIncenticare , "Check incenticare");
         waitForPageLoadToComplete();
         clearAndSendKeys(ClientRepo.txtPolicyIssueState,"Arizona" , "Policy Issue State ");
+        SendKeys(ClientRepo.txtPolicyIssueState, Keys.chord(Keys.TAB) ,"Selecting the added state");
+        SendKeys(ClientRepo.txtPolicyIssueState, Keys.chord(Keys.TAB) ,"Selecting the added state");
         String CurrentDate = Common.getTodayDate();
         clearAndSendKeys(ClientRepo.effectiveDate ,CurrentDate ,"Today date added");
+        SendKeys(ClientRepo.effectiveDate, Keys.chord(Keys.TAB ,"Click Tab"),"Press Tab");
+        clickElement(ClientRepo.radioselectEmp1 , "Click 1st Employee");
+        clickElement(ClientRepo.btnAddBenifitYear , "Add Benifit Year");
+        moveToElement(ClientRepo.spouseYes);
+        clickElement(ClientRepo.spouseYes ,"Spouse Yes");
+        clickElement(ClientRepo.selectPlan1 , "Select Plan 1");
+        clearAndSendKeys(ClientRepo.txtSinglePlan ,"20" ,"Add Single Plan Cost");
+        clearAndSendKeys(ClientRepo.txtFamilyPlan ,"30" ,"Add Family Plan");
+        clickElement(ClientRepo.chkBloodGlucode , "Check blood Glucose");
+        clickElement(ClientRepo.ldlCholestrol ,"Check LDL Cholestrol");
+        clearAndSendKeys(ClientRepo.employeeBSR ,"20" ,"Add Single Plan Cost");
+        clearAndSendKeys(ClientRepo.familyBSR ,"30" ,"Add Family Plan");
+        clearAndSendKeys(ClientRepo.employeeLDL ,"20" ,"Add Single Plan Cost");
+        clearAndSendKeys(ClientRepo.familyLDL ,"30" ,"Add Family Plan");
+
+        clickElement(ClientRepo.addCurrentAgent ,"Adding Current Agent");
+        waitForPageLoadToComplete();
+        String AgentName = Common.getFieldData("AgentName");
+        clearAndSendKeys(ClientRepo.addAgentName ,AgentName ,"Adding agent name from Property File");
+        clickElement(ClientRepo.selectAgentName , "Click on Agent Name");
+       // SendKeys(ClientRepo.addAgentName ,Keys.chord(Keys.TAB) ,"Press TAB");
+        clearAndSendKeys(ClientRepo.agentAssociationDate ,CurrentDate ,"Add Association Date");
+
+       SendKeys(ClientRepo.agentAssociationDate ,Keys.chord(Keys.TAB) ,"Press TAB");
+       // clickElement(ClientRepo.addAgentName ,"Click Date");
+        clickElement(ClientRepo.agentsave ,"Save Agent");
+        clickElement(ClientRepo.incentiveSave ,"Save Incentive product");
+        logTestStepPass("Inceticare Linked with Client");
+
+
+
+
+
 
 
     }
@@ -233,6 +271,24 @@ public class Client {
            logTestStepPass("Primary Checkbox can be checked  after unchecking the primary contact from 1st contact");
        }
 
+        public static void addAgent() throws Exception {
 
+            clickElement(HomeRepo.linkUserManager, "Click User Manager");
+            clickElement(ClientRepo.btnAdduser, "Button Add User");
+            clickElement(ClientRepo.linkAddAgent, "Client Link");
+            WaitTool.waitForPageLoadToComplete();
+            clearAndSendKeys(ClientRepo.agentFirstName, GlobalTestData.Agent_Users.getFirst_name(), "Adding First Name");
+            clearAndSendKeys(ClientRepo.agentLastName, GlobalTestData.Agent_Users.getLast_name(), "Adding Last Name");
+            clearAndSendKeys(ClientRepo.agencyName, GlobalTestData.Agent_Users.getAgency_Name(), "Adding Agency Name");
+            clearAndSendKeys(ClientRepo.agentEmail, GlobalTestData.Agent_Users.getAgent_Email(), "Adding Agent Email");
+            clearAndSendKeys(ClientRepo.agentNPN , GlobalTestData.Agent_Users.getNPN() ,"Adding Agency Name");
+            //clearAndSendKeys(ClientRepo.agencyName , GlobalTestData.Agent_Users.getAgency_Name() ,"Adding Agency Name");
+            Common.saveFieldData("AgentName",GlobalTestData.Agent_Users.getFirst_name() +" "+ GlobalTestData.Agent_Users.getLast_name(),"Saved for scripts");
+            Common.saveFieldData("AgentEmail",GlobalTestData.Agent_Users.getAgent_Email(),"Saved for scripts");
+            clickElement(ClientRepo.btnAgentSave ,"Save Agent");
+             logTestStepPass("Agent Added Successfully");
+
+
+        }
 
 }

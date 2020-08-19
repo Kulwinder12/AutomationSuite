@@ -61,31 +61,7 @@ public class HelpCenter {
         return articles;
     }
 
-    public static Boolean getAddedData(SelenideElement ele, String recordName) {
-        List<String> listData = ele.$$("tr:nth-child(1)>td").texts();
-        boolean result = false;
-        for (String strDocName : listData) {
-            if (strDocName.equalsIgnoreCase(recordName)) {
-                result = true;
-                break;
-            } else continue;
-        }
-        return result;
-    }
 
-    public void searchAddedRecord(String recordname) throws InterruptedException {
-
-        WebElement txtSrc = $(HelpCenterRepo.searchBox).waitUntil(appear, DEFAULT_WAIT).getWrappedElement();
-        txtSrc.click();
-        Log.info("Search Box Clicked");
-        txtSrc.sendKeys(recordname);
-        Log.info("Search With Record Name");
-        sleep(500);
-        txtSrc.sendKeys(Keys.ENTER);
-        sleep(500);
-
-
-    }
 
 
     public void editArticle() throws Exception {
