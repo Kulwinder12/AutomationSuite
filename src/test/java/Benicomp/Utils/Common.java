@@ -1,5 +1,6 @@
 package Benicomp.Utils;
 
+import Benicomp.Locators.ClientRepo;
 import Benicomp.Locators.HelpCenterRepo;
 import Benicomp.Modules.HelpCenter;
 import com.codeborne.selenide.*;
@@ -919,9 +920,9 @@ public class Common extends Start {
 
     }
 
-    public static void verifyAddedDataInTablewithOutSearch(SelenideElement table ,String recordName) throws InterruptedException {
+    public static void verifyAddedDataInTablewithOutSearch(SelenideElement table ,String recordName) throws Exception {
 
-
+        moveToElement(ClientRepo.contactUs);
           boolean resultPresent = getAddedData(table, recordName);
 
         Assert.assertEquals(resultPresent,true, "No record Added");

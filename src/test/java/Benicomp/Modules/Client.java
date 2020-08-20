@@ -1,6 +1,7 @@
 package Benicomp.Modules;
 
 import Benicomp.Locators.ClientRepo;
+import Benicomp.Locators.HelpCenterRepo;
 import Benicomp.Locators.HomeRepo;
 import Benicomp.TestData.GlobalTestData;
 import Benicomp.Utils.Common;
@@ -29,10 +30,6 @@ public class Client {
         addContactDetails();
         addDivisionDetails();
         addIncenticareDetails();
-
-
-
-
 
     }
 
@@ -285,10 +282,54 @@ public class Client {
             //clearAndSendKeys(ClientRepo.agencyName , GlobalTestData.Agent_Users.getAgency_Name() ,"Adding Agency Name");
             Common.saveFieldData("AgentName",GlobalTestData.Agent_Users.getFirst_name() +" "+ GlobalTestData.Agent_Users.getLast_name(),"Saved for scripts");
             Common.saveFieldData("AgentEmail",GlobalTestData.Agent_Users.getAgent_Email(),"Saved for scripts");
+            Common.saveFieldData("AgencyName",GlobalTestData.Agent_Users.getAgency_Name(),"Saved for scripts");
             clickElement(ClientRepo.btnAgentSave ,"Save Agent");
              logTestStepPass("Agent Added Successfully");
 
 
         }
+
+
+        public static void addClientwithContact() throws Exception {
+
+        //First we create a client with contact
+            clickElement(HomeRepo.linkUserManager, "Click User Manager");
+            clickElement(ClientRepo.btnAdduser, "Button Add User");
+            clickElement(ClientRepo.linkClient, "Client Link");
+            WaitTool.waitForPageLoadToComplete();
+            clearAndSendKeys(ClientRepo.txtClientName, GlobalTestData.Client_Users.getClient_Name(), "Adding Client Name");
+            clearAndSendKeys(ClientRepo.txtGroupName, GlobalTestData.Client_Users.getGroup_Number(), "Adding Group Number");
+            clearAndSendKeys(ClientRepo.txtClientUrl, GlobalTestData.Client_Users.getClient_URL(), "Adding Client URL");
+            clearAndSendKeys(ClientRepo.txtAddress1, GlobalTestData.Client_Users.getAddress_Line_1(), "Adding Address");
+            clearAndSendKeys(ClientRepo.txtCity, GlobalTestData.Client_Users.getCity(), "Adding City");
+            clearAndSendKeys(ClientRepo.txtState, GlobalTestData.Client_Users.getState(), "Adding State");
+
+            clickElement(ClientRepo.btnSave, "Save button Click");
+            Common.saveFieldData("ClientNameToEdit" ,GlobalTestData.Client_Users.getClient_Name() ,"Saving it for other scripts");
+            logTestStepPass("Client Created");
+            logTestStepPass("Client" + GlobalTestData.Client_Users.getClient_Name()+ " is addded");
+            //Using existing script to create Contact
+            addContactDetails();
+
+            clickElement(HomeRepo.linkUserManager,"Clicking User Manager");
+
+        }
+
+       public void editClient() throws Exception {
+
+
+
+           clickElement(HelpCenterRepo.btnEdit ,"Click Edit Button ");
+           WaitTool.waitForPageLoadToComplete();
+
+
+           clearAndSendKeys(ClientRepo.txtClientName, GlobalTestData.Client_Users.getClient_Name(), " Change Client Name");
+           clearAndSendKeys(ClientRepo.txtAddress1, GlobalTestData.Client_Users.getAddress_Line_1(), "Change Address 1");
+           scrollandClick(ClientRepo.editSave);
+
+
+           logTestStepPass("Client" + GlobalTestData.Client_Users.getClient_Name()+ " is Updated");
+
+       }
 
 }

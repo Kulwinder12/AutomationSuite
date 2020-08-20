@@ -2,6 +2,8 @@ package Benicomp.Locators;
 
 import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Selenide.$x;
+
 public class ClientRepo {
 
     //Client Screen
@@ -30,6 +32,7 @@ public class ClientRepo {
     public static By linkNotes = By.xpath("//a[contains(@class,'nav-link')][contains(text(),'Notes')]");
     public static By btnSendCredentials = By.xpath("//button[@class='btn green-btn'][text()=' Send Credentials ']");
     public static By linkIncenticare = By.xpath("//a[contains(@class,'nav-link')][contains(text(),'IncentiCare')]");
+    public static By editSave  = By.xpath("//div[contains(@id,'profile')]//ancestor::div[1]//button[@type='submit'][contains(text(),'Save')]");
 
 
     //Contact Screen
@@ -86,6 +89,8 @@ public class ClientRepo {
     public static By agentAssociationDate =By.xpath("//h4[text()='Add Agent']//ancestor::div[3]//child::input[@formcontrolname='associationDate']");
     public static By agentsave = By.xpath("//h4[text()='Add Agent']//ancestor::div[3]//child::button[contains(text(),' Save')]");
     public static By incentiveSave = By.xpath("//div[@class='d-flex form-group justify-content-end right-btn-wrap']//button[@class='btn shadow-none green-btn'][contains(text(),'Save')]");
+    public static By agentInfoTable = By.xpath("//div[contains(text(),'Agent Information')]");
+    public static By contactUs = By.xpath("//a[text()='Contact Us']");
 
    // Notes Screen
    public static By notesLink = By.xpath("//a[contains(text(),'Notes')]");

@@ -79,7 +79,7 @@ public class HelpCenter {
         scrollandClick(HelpCenterRepo.btnUpdate);
 
 
-        logTestStepPass("Article" + GlobalTestData.Article_TestData.getTitle()+ " is addded");
+        logTestStepPass("Article" + GlobalTestData.Article_TestData.getTitle()+ " is Updated");
 
     }
     public void deleteArticle() throws Exception {
